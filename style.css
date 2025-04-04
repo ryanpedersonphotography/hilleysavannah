@@ -365,3 +365,68 @@ footer {
         padding: 15px;
     }
 }
+
+
+/* Lightbox Styling */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9); /* Dark semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure it's on top */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 85%;
+    display: flex; /* For centering image if needed */
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-image {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Ensure whole image is visible */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -10px; /* Position slightly outside the content area */
+    right: -10px;
+    background: rgba(40, 40, 40, 0.8);
+    color: #fff;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    padding: 5px 12px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+    z-index: 1010;
+}
+
+.lightbox-close:hover {
+    background: rgba(20, 20, 20, 0.9);
+}
+
+/* Add cursor pointer to gallery images */
+.gallery img {
+    cursor: pointer;
+}
