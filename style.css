@@ -33,17 +33,29 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Header Styling (Now inside Hero) */
 .hero header {
-    position: absolute; /* Position over the hero image */
+    position: fixed; /* Change to fixed to keep it at top when scrolling */
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(40, 40, 40, 0.3); /* Semi-transparent background */
+    background: rgba(40, 40, 40, 0.8); /* Slightly less transparent when visible */
     color: var(--light-text-color);
-    padding: 1rem 0; /* Reduced padding */
+    padding: 0.8rem 0; /* Adjust padding */
     text-align: center;
-    z-index: 10; /* Ensure header is above image and text */
-    border-bottom: none; /* Remove original border */
+    z-index: 100; /* High z-index */
+    border-bottom: none;
+    opacity: 0; /* Initially hidden */
+    visibility: hidden;
+    transform: translateY(-100%); /* Start off-screen */
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
 }
+
+/* Style for when header becomes visible */
+.hero header.header-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
 
 .hero header h1 {
     margin: 0;

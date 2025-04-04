@@ -1,6 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
     const galleryImages = document.querySelectorAll('.gallery img');
+    const header = document.querySelector('.hero header'); // Get the header element
     let lightbox = null; // To hold the lightbox element
+
+    // --- Header Visibility on Scroll ---
+    const handleScroll = () => {
+        if (!header) return; // Exit if header not found
+
+        // Add class if scrolled down, remove if near top
+        if (window.scrollY > 50) { // Adjust scroll threshold (50px) as needed
+            header.classList.add('header-visible');
+        } else {
+            header.classList.remove('header-visible');
+        }
+    };
+
+    // Attach scroll event listener
+    window.addEventListener('scroll', handleScroll);
+    // Initial check in case the page loads already scrolled down
+    handleScroll();
+
+
+    // --- Lightbox Functionality ---
 
     // Function to create and show the lightbox
     const showLightbox = (src) => {
