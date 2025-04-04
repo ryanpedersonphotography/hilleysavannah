@@ -1,0 +1,14 @@
+# Basic configuration for a static site
+
+[build]
+  # No build command needed for static HTML/CSS/JS
+  command = ""
+  # Directory containing the deploy-ready HTML files and assets
+  publish = "."
+
+# Optional: Redirects and headers can be defined here too
+# Example:
+# [[redirects]]
+#   from = "/*"
+#   to = "/index.html"
+#   status = 200
