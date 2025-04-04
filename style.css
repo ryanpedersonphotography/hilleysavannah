@@ -98,7 +98,7 @@ header nav ul li a.active { /* Style for active page */
     position: relative; /* Container for absolute positioning */
     width: 100%;
     height: 80vh; /* Make hero take 80% of viewport height */
-    min-height: 450px; /* Adjust minimum height if needed */
+    min-height: 600px; /* Increased minimum height */
     display: flex; /* Use flexbox for centering text */
     align-items: center;
     justify-content: center;
@@ -116,15 +116,27 @@ header nav ul li a.active { /* Style for active page */
     height: 100%;
     object-fit: cover; /* Cover the area, cropping if needed */
     z-index: -1; /* Place behind content */
-    filter: brightness(0.7); /* Slightly darken image for text contrast */
+    filter: brightness(0.8); /* Adjusted brightness for better image visibility */
+    animation: subtle-zoom 40s infinite alternate; /* Add subtle zoom effect */
+}
+
+@keyframes subtle-zoom {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
 }
 
 .hero .hero-text {
     position: relative; /* Keep text flow normal within flex container */
     z-index: 5;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.2); /* Optional subtle background for text */
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.4); /* Darker background for better contrast */
     border-radius: 5px;
+    max-width: 80%;
+    backdrop-filter: blur(5px); /* Add subtle blur effect for modern browsers */
 }
 
 .hero .hero-text h2 {
@@ -163,25 +175,29 @@ main h2 {
     color: var(--primary-color);
 }
 
-/* Gallery Styling (index.html) - Masonry using CSS Columns */
+/* Gallery Styling (index.html) - Using CSS Grid for better control */
 .gallery {
-    /* Masonry layout using CSS Columns */
-    column-count: 3; /* Adjust number of columns as needed */
-    column-gap: 15px; /* Space between columns */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
+    grid-gap: 20px; /* Space between images */
     padding-bottom: 30px;
+    padding-top: 20px;
 }
 
 .gallery img {
-    width: 100%; /* Make image fill the column width */
-    height: auto; /* Maintain aspect ratio */
+    width: 100%; /* Make image fill the grid cell */
+    height: 300px; /* Fixed height */
+    object-fit: cover; /* Cover the area, preserving aspect ratio */
     display: block; /* Ensure block display */
-    margin-bottom: 15px; /* Space below each image */
-    break-inside: avoid-column; /* Prevent images from breaking across columns */
-    transition: opacity 0.3s ease; /* Smoother hover effect */
+    transition: all 0.3s ease; /* Smoother hover effect */
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .gallery img:hover {
-   opacity: 0.85; /* Slight fade on hover */
+   opacity: 0.9; /* Slight fade on hover */
+   transform: translateY(-5px); /* Slight lift effect */
+   box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Enhanced shadow */
 }
 
 
@@ -345,9 +361,8 @@ footer {
         margin-bottom: 30px;
     }
     .gallery {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
         gap: 15px;
-        column-count: 2; /* Fewer columns on medium screens */
     }
     .contact-container {
         flex-direction: column;
@@ -360,6 +375,9 @@ footer {
     .contact-info ul {
         display: inline-block; /* Center list items */
         text-align: left;
+    }
+    .hero .hero-text {
+        max-width: 90%;
     }
 }
 
@@ -386,11 +404,14 @@ footer {
     }
     .gallery {
         grid-template-columns: 1fr; /* Single column */
-        gap: 10px;
-        column-count: 1; /* Single column on small screens */
+        gap: 15px;
     }
     main {
         padding: 15px;
+    }
+    .hero .hero-text {
+        padding: 20px;
+        max-width: 95%;
     }
 }
 
