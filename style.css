@@ -31,16 +31,21 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
 }
 
-/* Header Styling */
-header {
-    background: var(--header-footer-bg);
+/* Header Styling (Now inside Hero) */
+.hero header {
+    position: absolute; /* Position over the hero image */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(40, 40, 40, 0.3); /* Semi-transparent background */
     color: var(--light-text-color);
-    padding: 1.5rem 0;
+    padding: 1rem 0; /* Reduced padding */
     text-align: center;
-    border-bottom: 3px solid var(--accent-color);
+    z-index: 10; /* Ensure header is above image and text */
+    border-bottom: none; /* Remove original border */
 }
 
-header h1 {
+.hero header h1 {
     margin: 0;
     padding-bottom: 0.75rem;
     font-size: 2.5em;
@@ -75,26 +80,61 @@ header nav ul li a.active { /* Style for active page */
     color: var(--accent-color);
 }
 
+
 /* Hero Section Styling */
 .hero {
-    width: 100%; /* Full width */
-    max-height: 400px; /* Match image height or adjust as needed */
-    overflow: hidden; /* Hide any overflow if image aspect ratio differs */
-    margin-bottom: 40px; /* Space below hero */
-    line-height: 0; /* Remove extra space below image */
+    position: relative; /* Container for absolute positioning */
+    width: 100%;
+    height: 90vh; /* Make hero take 90% of viewport height */
+    min-height: 500px; /* Adjust minimum height if needed */
+    display: flex; /* Use flexbox for centering text */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    margin-bottom: 0; /* Remove bottom margin */
+    color: var(--light-text-color);
 }
 
-.hero img {
+.hero .hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Remove extra space */
+    height: 100%;
+    object-fit: cover; /* Cover the area, cropping if needed */
+    z-index: -1; /* Place behind content */
+    filter: brightness(0.7); /* Slightly darken image for text contrast */
+}
+
+.hero .hero-text {
+    position: relative; /* Keep text flow normal within flex container */
+    z-index: 5;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2); /* Optional subtle background for text */
+    border-radius: 5px;
+}
+
+.hero .hero-text h2 {
+    font-size: 2.5em; /* Slightly smaller hero text */
+    margin-bottom: 0.5rem;
+    color: var(--light-text-color);
+    font-weight: 400; /* Keep Playfair Display regular */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* Softer shadow */
+}
+
+.hero .hero-text p {
+    font-size: 1.2em; /* Smaller paragraph text */
+    font-weight: 300; /* Keep Lato light */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* Softer shadow */
+    margin-bottom: 0;
 }
 
 
 /* Main Content Area */
 main {
     max-width: 1200px; /* Slightly wider */
-    margin: 40px auto; /* More space top/bottom */
+    margin: 40px auto; /* Keep margin for spacing below hero */
     padding: 30px 40px; /* More padding */
     background: var(--background-color);
     /* Removed box-shadow for a flatter look, can add back if desired */
@@ -261,10 +301,10 @@ footer {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    header h1 {
+    .hero header h1 { /* Adjust header size inside hero */
         font-size: 2em;
     }
-    header nav ul li {
+    .hero header nav ul li {
         margin: 0 10px;
         font-size: 1em;
     }
@@ -296,15 +336,25 @@ footer {
 }
 
 @media (max-width: 480px) {
-    header {
-        padding: 1rem 0;
+    .hero header {
+        padding: 0.8rem 0;
     }
-    header h1 {
+    .hero header h1 {
         font-size: 1.8em;
     }
-    header nav ul li {
+    .hero header nav ul li {
         display: block; /* Stack nav items */
-        margin: 8px 0;
+        margin: 5px 0;
+    }
+    .hero {
+        height: 70vh; /* Adjust hero height for smaller screens */
+        min-height: 400px;
+    }
+    .hero .hero-text h2 {
+        font-size: 1.8em; /* Adjust text size for smaller screens */
+    }
+    .hero .hero-text p {
+        font-size: 1em; /* Adjust text size for smaller screens */
     }
     .gallery {
         grid-template-columns: 1fr; /* Single column */
